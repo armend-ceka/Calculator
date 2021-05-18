@@ -33,10 +33,17 @@ class App extends React.Component {
       }
       this.setState({ equation: equat })
     }
-    if (pressedButton === "=") {
+    else if (pressedButton === "=") {
       if ((["*", "/", "+", "-", "%"].indexOf(equat.slice(-1)) === -1)) {
         res = Number.isInteger(eval(equat)) ? eval(equat) : eval(equat).toFixed(2);
         equat = res.toString();
+        this.setState({ equation: equat, result: res })
+      }
+    }
+    else if (pressedButton === "←") {
+      equat = equat.substring(0,equat.length-1)
+      if ((["*", "/", "+", "-", "%"].indexOf(equat.slice(-1)) === -1)) {
+        res = Number.isInteger(eval(equat)) ? eval(equat) : eval(equat).toFixed(2);
         this.setState({ equation: equat, result: res })
       }
     }
